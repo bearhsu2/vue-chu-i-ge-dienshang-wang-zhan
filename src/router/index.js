@@ -8,9 +8,9 @@ Vue.use(VueRouter);
 export default new VueRouter ({
     routes: [
         {
-            name: '首頁',
-            path: '/',
-            component: Home
+            name: '首頁',  // 元件的名稱
+            path: '/',    // 元件的路徑
+            component: Home // 元件本身
         }
     ]
 });
