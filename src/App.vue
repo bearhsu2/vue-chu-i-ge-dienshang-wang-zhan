@@ -14,7 +14,6 @@
     export default {
         name: 'App',
         components: {
-            // HelloWorld
         },
         created() {
             this.$http.get('https://randomuser.me/api/')
