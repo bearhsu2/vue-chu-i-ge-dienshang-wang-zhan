@@ -19,9 +19,6 @@
         data() {
             return {}
         },
-        props: {
-            msg: String
-        }
     }
 </script>
 
