@@ -3,7 +3,7 @@
     <div class="hello">
         <router-link to='/page'>Card 1</router-link>
         <router-link to='/page/child2'>Card 2</router-link>
-        <router-link to='/page/child3'>Card 3</router-link>
+        <router-link to='/page/child/sss'>Card 3</router-link>
         <div class="card" style="width: 18rem;">
             <router-view></router-view>
 <!--            <div class="card-body">-->
