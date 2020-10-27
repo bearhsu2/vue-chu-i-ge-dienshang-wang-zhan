@@ -2,6 +2,7 @@
 
     <div>
 
+        <img alt="Card image cap" class="card-img-top" src="https://picsum.photos/250">
         <div class="card-body">
             <h5 class="card-title">Card 2</h5>
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
