@@ -16,6 +16,7 @@
             </div>
         </nav>
 
+        <router-view name="menu"></router-view>
         <div class="container">
             <router-view></router-view>
         </div>
