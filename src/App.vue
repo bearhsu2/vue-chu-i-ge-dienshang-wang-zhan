@@ -15,9 +15,12 @@
                 </ul>
             </div>
         </nav>
-        <img alt="Vue logo" src="./assets/logo.png">
+<!--        <img alt="Vue logo" src="./assets/logo.png">-->
 
-        <router-view></router-view>
+        <div class="container">
+
+            <router-view></router-view>
+        </div>
 
     </div>
 </template>

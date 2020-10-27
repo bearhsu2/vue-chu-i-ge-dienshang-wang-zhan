@@ -20,15 +20,6 @@
                 name: ''
             }
         },
-        created() {
-            console.log(this.$route.params.id);
-
-            const id = this.$route.params.id;
-            this.$http.get(`https://randomuser.me/api/?seed=${id}`).then((response) => {
-                console.log(response);
-                this.name = response.data.results[0].name.first;
-            });
-        }
     }
 </script>
 
