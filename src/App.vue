@@ -40,7 +40,7 @@
 </script>
 
 <style lang="scss">
-    @import "~bootstrap/scss/bootstrap";
+    @import "./assets/all.scss";
     /*#app {*/
     /*    font-family: Avenir, Helvetica, Arial, sans-serif;*/
     /*    -webkit-font-smoothing: antialiased;*/
