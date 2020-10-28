@@ -30,9 +30,10 @@
         name: 'App',
         components: {},
         created() {
-            this.$http.get('https://randomuser.me/api/')
+            const api = 'https://vue-course-api.hexschool.io/api/simbodev/products';
+            this.$http.get(api)
                 .then((response) => {
-                    console.log(response.data)
+                    console.log(response.data.products)
                 })
         }
     }
