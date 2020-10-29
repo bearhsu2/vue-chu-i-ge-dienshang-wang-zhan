@@ -1,6 +1,6 @@
 <template>
     <div class="hello">
-        <form class="form-signin">
+        <form @submit.prevent="signIn" class="form-signin">
             <!--            <img alt="" class="mb-4" height="72" src="/docs/4.5/assets/brand/bootstrap-solid.svg" width="72">-->
             <h1 class="h3 mb-3 font-weight-normal">登入頁面</h1>
             <label class="sr-only" for="inputEmail">Email address</label>
@@ -21,8 +21,29 @@
 <script>
     export default {
         name: 'Login',
-        props: {
-            msg: String
+        data() {
+            return {
+                login: {
+                    username: '',
+                    password: ''
+                }
+            }
+        },
+        methods: {
+            signIn() {
+
+                const vm = this;
+
+                const api = 'https://vue-course-api.hexschool.io/api/signin';
+                this.$http.post(api, vm.login)
+                    .then((response) => {
+                        if (response.data.success) {
+
+                            this.$router.push('/');
+                        }
+                        console.log(response.data)
+                    })
+            }
         }
     }
 </script>
