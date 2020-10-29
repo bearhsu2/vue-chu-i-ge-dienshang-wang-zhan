@@ -17,7 +17,7 @@
             const api = 'https://vue-course-api.hexschool.io/api/bearhsu2/products';
             this.$http.get(api)
                 .then((response) => {
-                    console.log(response.data.products)
+                    // console.log(response.data.products)
                 })
         }
     }
