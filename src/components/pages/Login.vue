@@ -4,9 +4,11 @@
             <!--            <img alt="" class="mb-4" height="72" src="/docs/4.5/assets/brand/bootstrap-solid.svg" width="72">-->
             <h1 class="h3 mb-3 font-weight-normal">登入頁面</h1>
             <label class="sr-only" for="inputEmail">Email address</label>
-            <input autofocus class="form-control" id="inputEmail" placeholder="Email address" required type="email">
+            <input autofocus class="form-control" id="inputEmail" placeholder="Email address" required
+                   type="email" v-model="user.username">
             <label class="sr-only" for="inputPassword">Password</label>
-            <input class="form-control" id="inputPassword" placeholder="Password" required type="password">
+            <input class="form-control" id="inputPassword" placeholder="Password" required type="password"
+                   v-model="user.password">
             <div class="checkbox mb-3">
                 <label>
                     <input type="checkbox" value="remember-me"> Remember me
@@ -23,7 +25,7 @@
         name: 'Login',
         data() {
             return {
-                login: {
+                user: {
                     username: '',
                     password: ''
                 }
@@ -34,14 +36,14 @@
 
                 const vm = this;
 
-                const api = 'https://vue-course-api.hexschool.io/api/signin';
-                this.$http.post(api, vm.login)
+                console.log(vm.user)
+                this.$http.post('https://vue-course-api.hexschool.io/signin', vm.user)
                     .then((response) => {
                         if (response.data.success) {
-
                             this.$router.push('/');
+                        } else {
+                            console.log(response.data)
                         }
-                        console.log(response.data)
                     })
             }
         }
