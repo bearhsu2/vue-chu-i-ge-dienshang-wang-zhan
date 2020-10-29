@@ -33,10 +33,7 @@
         },
         methods: {
             signIn() {
-
                 const vm = this;
-
-                console.log(JSON.stringify(vm.user))
                 this.$http.post('https://vue-course-api.hexschool.io/signin', vm.user)
                     .then((response) => {
                         if (response.data.success) {
