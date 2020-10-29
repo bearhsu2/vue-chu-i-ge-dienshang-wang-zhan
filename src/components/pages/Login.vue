@@ -26,8 +26,8 @@
         data() {
             return {
                 user: {
-                    username: '',
-                    password: ''
+                    username: 'bearhsu2@gmail.com',
+                    password: 'aaa123'
                 }
             }
         },

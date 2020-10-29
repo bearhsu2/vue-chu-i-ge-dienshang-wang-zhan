@@ -12,7 +12,6 @@
 
                 this.$http.post('https://vue-course-api.hexschool.io/logout')
                     .then((response) => {
-                            console.log(response.data)
                             if (response.data.success) {
                                 this.$router.push('/login');
                             }
