@@ -8,7 +8,29 @@ import router from '@/router';
 Vue.use(VueAxios, axios); //啟用套件
 Vue.config.productionTip = false;
 
+// axios.defaults.withCredentials = true;
+
 new Vue({
     render: h => h(App),
     router,
 }).$mount('#app');
+
+router.beforeEach((to, from, next) => {
+        if (to.meta.requiresAuth) {
+            axios.post('https://vue-course-api.hexschool.io/api/user/check').then((response) => {
+                    if (response.data.success) {
+                        console.log("Auth Successfully");
+                        next();
+                    } else {
+                        console.log("Auth failed");
+                        next({path: "/login"});
+                    }
+                }
+            );
+        } else {
+            console.log("Auth Skipped");
+            next();
+        }
+
+    }
+)
