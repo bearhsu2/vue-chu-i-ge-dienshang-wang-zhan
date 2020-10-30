@@ -10,16 +10,23 @@ export default new VueRouter({
     routes: [
 
         {
+            path: '*',
+            redirect: '/login'
+
+        },
+        {
             name: '首頁',  // 元件的名稱
             path: '/',    // 元件的路徑
             component: Home,  // 元件本身
+            meta: {
+                requiresAuth: true
+            }
 
         },
         {
             name: 'Login',  // 元件的名稱
             path: '/login',    // 元件的路徑
             component: Login,  // 元件本身
-
         },
     ]
 });

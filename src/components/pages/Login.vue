@@ -36,7 +36,7 @@
                 const vm = this;
                 this.$http.post('https://vue-course-api.hexschool.io/admin/signin', vm.user)
                     .then((response) => {
-                        console.log("response: ", response.data)
+                        console.log("Login response: ", response.data)
                         if (response.data.success) {
                             this.$router.push('/');
                         }

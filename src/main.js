@@ -16,21 +16,21 @@ new Vue({
 }).$mount('#app');
 
 router.beforeEach((to, from, next) => {
-
-        axios.post('https://vue-course-api.hexschool.io/api/user/check').then((response) => {
-            console.log("check result: ", response.data)
-
-            if (response.data.success) {
-                next();
-            } else {
-                next({
-                        path: "/login"
+        if (to.meta.requiresAuth) {
+            axios.post('https://vue-course-api.hexschool.io/api/user/check').then((response) => {
+                    if (response.data.success) {
+                        console.log("Auth Successfully");
+                        next();
+                    } else {
+                        console.log("Auth failed");
+                        next({path: "/login"});
                     }
-                );
-            }
+                }
+            );
+        } else {
+            console.log("Auth Skipped");
+            next();
+        }
 
-        });
-
-        next();
     }
 )
