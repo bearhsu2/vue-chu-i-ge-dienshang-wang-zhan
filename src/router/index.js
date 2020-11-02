@@ -2,7 +2,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router'
 
 import Home from '@/components/HelloWorld' // @ = src
-import Login from '@/components/pages/Login' // @ = src
+import Login from '@/components/pages/Login'
+import Dashboard from '@/components/Dashboard'
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,15 @@ export default new VueRouter({
             name: 'Login',  // 元件的名稱
             path: '/login',    // 元件的路徑
             component: Login,  // 元件本身
+        },
+        {
+            name: '產品頁',  // 元件的名稱
+            path: '/admin',    // 元件的路徑
+            component: Dashboard,  // 元件本身
+            meta: {
+                requiresAuth: true
+            }
+
         },
     ]
 });

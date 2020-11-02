@@ -1,7 +1,7 @@
 <template>
     <div id="app">
 
-        <div class="container">
+        <div>
             <router-view></router-view>
         </div>
 
@@ -24,7 +24,6 @@
 
 <style lang="scss">
     @import "./assets/all.scss";
-
 
 
 </style>
