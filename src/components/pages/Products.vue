@@ -1,6 +1,8 @@
 <template>
     <div>
-        products information here...
+        <div class="text-right mt-4">
+            <button class = "btn btn-primary">新增產品</button>
+        </div>
     </div>
 </template>
 <script>
