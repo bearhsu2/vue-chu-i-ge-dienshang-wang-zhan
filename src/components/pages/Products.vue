@@ -15,9 +15,10 @@
         },
         methods: {
             getProducts() {
+                const vm = this;
                 this.$http.get('https://vue-course-api.hexschool.io/api/bearhsu2/products')
                     .then((response) => {
-                        console.log(response.data.products)
+                        vm.products = response.data.products;
                     })
             }
         },
