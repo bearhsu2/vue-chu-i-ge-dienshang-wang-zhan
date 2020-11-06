@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="text-right mt-4">
-            <button @click="openModal" class="btn btn-primary">新增產品</button>
+            <button @click="openModal(true)" class="btn btn-primary">新增產品</button>
         </div>
 
 
@@ -26,7 +26,7 @@
                     <span v-else>Inactive</span>
                 </td>
                 <td>
-                    <button class="btn btn-outline-primary btn-sm">編輯</button>
+                    <button @click="openModal(false, item)" class="btn btn-outline-primary btn-sm">編輯</button>
                 </td>
 
             </tr>
@@ -148,9 +148,9 @@
         name: 'Products',
         data() {
             return {
-
                 products: [],
-                tempProduct: {}
+                tempProduct: {},
+                isNew: false
             }
         },
         methods: {
@@ -158,23 +158,36 @@
                 const vm = this;
                 this.$http.get('http://vue-course-api.hexschool.io/api/bearhsu2/admin/products')
                     .then((response) => {
-                        console.log(response);
                         vm.products = response.data.products;
                     })
             },
-            openModal() {
+            openModal(isNew, item) {
+
+                this.isNew = isNew;
+
+                this.tempProduct = isNew
+                    ? {}
+                    : Object.assign({}, item);
+
                 $('#productModal').modal('show');
             },
             updateProduct() {
 
                 const vm = this;
-                console.log(vm.tempProduct);
-                this.$http.post('http://vue-course-api.hexschool.io/api/bearhsu2/admin/product', {data: vm.tempProduct})
+
+                let url = vm.isNew
+                    ? 'http://vue-course-api.hexschool.io/api/bearhsu2/admin/product'
+                    : `http://vue-course-api.hexschool.io/api/bearhsu2/admin/product/${vm.tempProduct.id}`;
+
+                let action = vm.isNew ? 'post' : 'put';
+
+
+                this.$http[action](url, {data: vm.tempProduct})
                     .then((response) => {
                         $('#productModal').modal('hide');
                         vm.getProducts();
                         if (!response.data.success) {
-                            console.log("建立商品失敗");
+                            console.log("操作失敗");
                         }
                     });
             },
