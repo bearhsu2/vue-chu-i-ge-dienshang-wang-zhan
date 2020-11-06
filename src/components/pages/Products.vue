@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="text-right mt-4">
-            <button class="btn btn-primary" data-target="#productModal" data-toggle="modal">新增產品</button>
+            <button @click="openModal" class="btn btn-primary">新增產品</button>
         </div>
 
 
@@ -57,6 +57,9 @@
 </template>
 <script>
 
+    import $ from 'jquery';
+
+
     export default {
         name: 'Products',
         data() {
@@ -73,6 +76,9 @@
                         console.log(response);
                         vm.products = response.data.products;
                     })
+            },
+            openModal() {
+                $('#productModal').modal('show');
             }
         },
         created() {
