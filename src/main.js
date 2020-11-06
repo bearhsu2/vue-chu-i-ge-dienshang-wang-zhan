@@ -8,8 +8,6 @@ import router from '@/router';
 Vue.use(VueAxios, axios); //啟用套件
 Vue.config.productionTip = false;
 
-// axios.defaults.withCredentials = true;
-
 new Vue({
     render: h => h(App),
     router,

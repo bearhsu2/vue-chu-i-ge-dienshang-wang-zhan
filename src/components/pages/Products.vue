@@ -47,7 +47,7 @@
         methods: {
             getProducts() {
                 const vm = this;
-                this.$http.get('http://vue-course-api.hexschool.io/api/bearhsu2/products')
+                this.$http.get('http://vue-course-api.hexschool.io/api/bearhsu2/admin/products')
                     .then((response) => {
                         console.log(response);
                         vm.products = response.data.products;

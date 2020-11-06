@@ -36,8 +36,9 @@
                 const vm = this;
                 this.$http.post('https://vue-course-api.hexschool.io/admin/signin', vm.user)
                     .then((response) => {
-                        console.log("Login response: ", response.data)
-                        if (response.data.success) {
+                        const responseData = response.data;
+                        if (responseData.success) {
+                            document.cookie = `hexToken=${(responseData.token)}; expires=${new Date(responseData.expired)};`;
                             this.$router.push('/admin/products');
                         }
                     })
