@@ -62,7 +62,6 @@
                                 </div>
                                 <img :src="tempProduct.imageUrl"
                                      alt="" class="img-fluid"
-                                     img="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=828346ed697837ce808cae68d3ddc3cf&auto=format&fit=crop&w=1350&q=80"
                                 >
                             </div>
                             <div class="col-sm-8">
