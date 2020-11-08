@@ -1,5 +1,6 @@
 <template>
     <div>
+
         <div class="text-right mt-4">
             <button @click="openModal(true)" class="btn btn-primary">新增產品</button>
         </div>
@@ -7,31 +8,38 @@
 
         <table class="table table-striped mt-4">
             <thead>
-            <td>分類</td>
-            <td>產品名稱</td>
-            <td>原價</td>
-            <td>售價</td>
-            <td>啟用</td>
-            <td>編輯</td>
+            <tr class="d-flex">
+
+                <td class="col-1">分類</td>
+                <td class="col-6">產品名稱</td>
+                <td class="col-1">原價</td>
+                <td class="col-1">售價</td>
+                <td class="col-1">啟用</td>
+                <td class="col-2">編輯</td>
+            </tr>
             </thead>
             <tbody>
-            <tr :key=item.id v-for="item in products">
+            <tr :key=item.id class="d-flex" v-for="item in products">
 
-                <td>{{item.category}}</td>
-                <td>{{item.title}}</td>
-                <td>{{item.origin_price}}</td>
-                <td>{{item.price}}</td>
-                <td>
+                <td class="col-1">{{item.category}}</td>
+                <td class="col-6">{{item.title}}</td>
+                <td class="col-1 text-right">{{item.origin_price}}</td>
+                <td class="col-1 text-right">{{item.price}}</td>
+                <td class="col-1">
                     <span class="text-success" v-if="item.is_enabled">Active</span>
                     <span v-else>Inactive</span>
                 </td>
-                <td>
+                <td class="col-2">
                     <button @click="openModal(false, item)" class="btn btn-outline-primary btn-sm">編輯</button>
+                    <button @click="deleteProduct" class="btn btn-outline-danger btn-sm">刪除</button>
                 </td>
 
             </tr>
             </tbody>
         </table>
+        <div class="d-flex justify-content-center">
+            <loading :active.sync="isLoading"></loading>
+        </div>
 
 
         <div aria-hidden="true" aria-labelledby="productModalLabel" class="modal fade" id="productModal" role="dialog"
@@ -55,7 +63,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="customFile">或 上傳圖片
-                                        <i class="fas fa-spinner fa-spin"></i>
+                                        <i class="fas fa-spinner fa-spin" v-if="status.fileUploading"></i>
                                     </label>
                                     <input @change="uploadFile" class="form-control" id="customFile"
                                            ref="files" type="file">
@@ -150,14 +158,21 @@
             return {
                 products: [],
                 tempProduct: {},
-                isNew: false
+                isNew: false,
+                isLoading: false,
+                status: {
+                    fileUploading: false
+                }
             }
         },
         methods: {
             getProducts() {
                 const vm = this;
+
+                vm.isLoading = true;
                 this.$http.get('http://vue-course-api.hexschool.io/api/bearhsu2/admin/products')
                     .then((response) => {
+                        vm.isLoading = false;
                         vm.products = response.data.products;
                     })
             },
@@ -195,14 +210,18 @@
                 const uploadedFile = this.$refs.files.files[0];
                 const vm = this;
                 const formData = new FormData();
+                vm.status.fileUploading = true;
                 formData.append('file-to-upload', uploadedFile);
                 this.$http.post('https://vue-course-api.hexschool.io/api/bearhsu2/admin/upload', formData, {
                     headers: {'Content-Type': 'multipart-form-data'}
                 }).then((response) => {
+                    vm.status.fileUploading = false;
                     if (response.data.success) {
                         vm.$set(vm.tempProduct, 'imageUrl', response.data.imageUrl);
                     }
                 })
+            },
+            deleteProduct() {
             }
         },
         created() {

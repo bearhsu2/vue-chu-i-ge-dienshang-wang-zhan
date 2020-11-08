@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import axios from 'axios'
+import Loading from 'vue-loading-overlay';
 import VueAxios from 'vue-axios';
 import 'bootstrap'
 
@@ -9,6 +10,7 @@ import router from '@/router';
 
 Vue.use(VueAxios, axios); //啟用套件
 Vue.config.productionTip = false;
+Vue.component('Loading', Loading);
 
 new Vue({
     render: h => h(App),
