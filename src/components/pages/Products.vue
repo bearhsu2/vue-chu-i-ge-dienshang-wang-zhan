@@ -7,25 +7,28 @@
 
         <table class="table table-striped mt-4">
             <thead>
-            <td>分類</td>
-            <td>產品名稱</td>
-            <td>原價</td>
-            <td>售價</td>
-            <td>啟用</td>
-            <td>編輯</td>
+            <tr class="d-flex">
+
+                <td class="col-1">分類</td>
+                <td class="col-6">產品名稱</td>
+                <td class="col-1">原價</td>
+                <td class="col-1">售價</td>
+                <td class="col-1">啟用</td>
+                <td class="col-2">編輯</td>
+            </tr>
             </thead>
             <tbody>
-            <tr :key=item.id v-for="item in products">
+            <tr class="d-flex" :key=item.id v-for="item in products">
 
-                <td>{{item.category}}</td>
-                <td>{{item.title}}</td>
-                <td>{{item.origin_price}}</td>
-                <td>{{item.price}}</td>
-                <td>
+                <td class="col-1">{{item.category}}</td>
+                <td class="col-6">{{item.title}}</td>
+                <td class="col-1">{{item.origin_price}}</td>
+                <td class="col-1">{{item.price}}</td>
+                <td class="col-1">
                     <span class="text-success" v-if="item.is_enabled">Active</span>
                     <span v-else>Inactive</span>
                 </td>
-                <td>
+                <td class="col-2">
                     <button @click="openModal(false, item)" class="btn btn-outline-primary btn-sm">編輯</button>
                     <button @click="deleteProduct" class="btn btn-outline-danger btn-sm">刪除</button>
                 </td>
