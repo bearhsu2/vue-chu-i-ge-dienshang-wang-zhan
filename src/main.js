@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios';
+import 'bootstrap'
+
 import App from '@/App' // ".vue" can be ignored
 import router from '@/router';
 
 
 Vue.use(VueAxios, axios); //啟用套件
 Vue.config.productionTip = false;
-
-// axios.defaults.withCredentials = true;
 
 new Vue({
     render: h => h(App),

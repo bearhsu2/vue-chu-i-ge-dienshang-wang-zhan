@@ -23,7 +23,10 @@
     import Sidebar from './Sidebar';
 
     export default {
-        components: {Navbar, Sidebar}
+        components: {Navbar, Sidebar},
+        created() {
+            this.$http.defaults.headers.common.Authorization = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        }
     }
 
 </script>
