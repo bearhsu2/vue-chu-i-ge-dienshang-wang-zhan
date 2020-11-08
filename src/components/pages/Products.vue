@@ -1,5 +1,6 @@
 <template>
     <div>
+
         <div class="text-right mt-4">
             <button @click="openModal(true)" class="btn btn-primary">新增產品</button>
         </div>
@@ -36,6 +37,10 @@
             </tr>
             </tbody>
         </table>
+        <div class="d-flex justify-content-center">
+
+            <loading :active.sync="isLoading"></loading>
+        </div>
 
 
         <div aria-hidden="true" aria-labelledby="productModalLabel" class="modal fade" id="productModal" role="dialog"
@@ -154,14 +159,18 @@
             return {
                 products: [],
                 tempProduct: {},
-                isNew: false
+                isNew: false,
+                isLoading: false
             }
         },
         methods: {
             getProducts() {
                 const vm = this;
+
+                vm.isLoading = true;
                 this.$http.get('http://vue-course-api.hexschool.io/api/bearhsu2/admin/products')
                     .then((response) => {
+                        vm.isLoading = false;
                         vm.products = response.data.products;
                     })
             },
