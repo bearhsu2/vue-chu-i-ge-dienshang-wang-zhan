@@ -6,6 +6,7 @@ import 'bootstrap'
 
 import App from '@/App' // ".vue" can be ignored
 import router from '@/router';
+import './bus';
 
 
 Vue.use(VueAxios, axios); //啟用套件
