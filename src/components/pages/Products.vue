@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="customFile">或 上傳圖片
-                                        <i class="fas fa-spinner fa-spin" v-if="status.isFileUploading"></i>
+                                        <i class="fas fa-spinner fa-spin" v-if="status.fileUploading"></i>
                                     </label>
                                     <input @change="uploadFile" class="form-control" id="customFile"
                                            ref="files" type="file">
@@ -161,7 +161,7 @@
                 isNew: false,
                 isLoading: false,
                 status: {
-                    isFileUploading: false
+                    fileUploading: false
                 }
             }
         },
@@ -210,12 +210,12 @@
                 const uploadedFile = this.$refs.files.files[0];
                 const vm = this;
                 const formData = new FormData();
-                vm.status.isFileUploading = true;
+                vm.status.fileUploading = true;
                 formData.append('file-to-upload', uploadedFile);
                 this.$http.post('https://vue-course-api.hexschool.io/api/bearhsu2/admin/upload', formData, {
                     headers: {'Content-Type': 'multipart-form-data'}
                 }).then((response) => {
-                    vm.status.isFileUploading = false;
+                    vm.status.fileUploading = false;
                     if (response.data.success) {
                         vm.$set(vm.tempProduct, 'imageUrl', response.data.imageUrl);
                     }
