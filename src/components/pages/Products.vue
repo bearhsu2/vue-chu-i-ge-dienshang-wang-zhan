@@ -18,12 +18,12 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="d-flex" :key=item.id v-for="item in products">
+            <tr :key=item.id class="d-flex" v-for="item in products">
 
                 <td class="col-1">{{item.category}}</td>
                 <td class="col-6">{{item.title}}</td>
-                <td class="col-1">{{item.origin_price}}</td>
-                <td class="col-1">{{item.price}}</td>
+                <td class="col-1 text-right">{{item.origin_price}}</td>
+                <td class="col-1 text-right">{{item.price}}</td>
                 <td class="col-1">
                     <span class="text-success" v-if="item.is_enabled">Active</span>
                     <span v-else>Inactive</span>
