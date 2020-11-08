@@ -27,6 +27,7 @@
                 </td>
                 <td>
                     <button @click="openModal(false, item)" class="btn btn-outline-primary btn-sm">編輯</button>
+                    <button @click="deleteProduct" class="btn btn-outline-danger btn-sm">刪除</button>
                 </td>
 
             </tr>
@@ -203,6 +204,8 @@
                         vm.$set(vm.tempProduct, 'imageUrl', response.data.imageUrl);
                     }
                 })
+            },
+            deleteProduct() {
             }
         },
         created() {
