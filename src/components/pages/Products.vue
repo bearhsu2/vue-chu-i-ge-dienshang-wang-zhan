@@ -23,8 +23,8 @@
 
                 <td class="col-1">{{item.category}}</td>
                 <td class="col-6">{{item.title}}</td>
-                <td class="col-1 text-right">{{item.origin_price}}</td>
-                <td class="col-1 text-right">{{item.price}}</td>
+                <td class="col-1 text-right">{{item.origin_price | currency}}</td>
+                <td class="col-1 text-right">{{item.price | currency}}</td>
                 <td class="col-1">
                     <span class="text-success" v-if="item.is_enabled">Active</span>
                     <span v-else>Inactive</span>

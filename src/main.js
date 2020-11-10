@@ -7,11 +7,13 @@ import 'bootstrap'
 import App from '@/App' // ".vue" can be ignored
 import router from '@/router';
 import './bus';
+import currencyFilter from './filters/currency';
 
 
 Vue.use(VueAxios, axios); //啟用套件
 Vue.config.productionTip = false;
 Vue.component('Loading', Loading);
+Vue.filter('currency', currencyFilter);
 
 new Vue({
     render: h => h(App),
