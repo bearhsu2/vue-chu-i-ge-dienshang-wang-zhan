@@ -194,7 +194,6 @@
                 vm.isLoading = true;
                 this.$http.get(`http://vue-course-api.hexschool.io/api/bearhsu2/admin/products?page=${page}`)
                     .then((response) => {
-                        console.log(response.data);
                         vm.isLoading = false;
                         vm.products = response.data.products;
                         vm.pagination = response.data.pagination;
@@ -226,7 +225,7 @@
                         $('#productModal').modal('hide');
                         vm.getProducts();
                         if (!response.data.success) {
-                            console.log("操作失敗");
+                            vm.$bus.$emit('message:push', "操作失敗", 'danger');
                         }
                     });
             },
