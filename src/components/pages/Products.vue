@@ -37,6 +37,24 @@
             </tr>
             </tbody>
         </table>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item" :class="{'disabled':!pagination.has_pre}" >
+                    <a aria-label="Previous" class="page-link" href="#">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li :key="page" class="page-item" v-for="page in pagination.total_pages" :class="{'active': pagination.current_page === page}">
+                    <a class="page-link" href="#" >{{ page }}</a>
+                </li>
+                <li class="page-item" :class="{'disabled':!pagination.has_next}" >
+                    <a aria-label="Next" class="page-link" href="#">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
         <div class="d-flex justify-content-center">
             <loading :active.sync="isLoading"></loading>
         </div>
@@ -157,6 +175,7 @@
         data() {
             return {
                 products: [],
+                pagination: {},
                 tempProduct: {},
                 isNew: false,
                 isLoading: false,
@@ -172,8 +191,10 @@
                 vm.isLoading = true;
                 this.$http.get('http://vue-course-api.hexschool.io/api/bearhsu2/admin/products')
                     .then((response) => {
+                        console.log(response.data);
                         vm.isLoading = false;
                         vm.products = response.data.products;
+                        vm.pagination = response.data.pagination;
                     })
             },
             openModal(isNew, item) {
