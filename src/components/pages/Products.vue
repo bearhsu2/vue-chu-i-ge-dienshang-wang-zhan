@@ -40,7 +40,8 @@
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 <li :class="{'disabled':!pagination.has_pre}" class="page-item">
-                    <a aria-label="Previous" class="page-link" href="#">
+                    <a @click.prevent="getProducts(pagination.current_page - 1)" aria-label="Previous" class="page-link"
+                       href="#">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
@@ -49,7 +50,8 @@
                     <a @click.prevent="getProducts(page)" class="page-link" href="#">{{ page }}</a>
                 </li>
                 <li :class="{'disabled':!pagination.has_next}" class="page-item">
-                    <a aria-label="Next" class="page-link" href="#">
+                    <a @click.prevent="getProducts(pagination.current_page + 1)" aria-label="Next" class="page-link"
+                       href="#">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
