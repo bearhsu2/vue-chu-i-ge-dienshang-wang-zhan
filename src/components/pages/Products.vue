@@ -39,15 +39,16 @@
         </table>
         <nav aria-label="Page navigation example">
             <ul class="pagination">
-                <li class="page-item" :class="{'disabled':!pagination.has_pre}" >
+                <li :class="{'disabled':!pagination.has_pre}" class="page-item">
                     <a aria-label="Previous" class="page-link" href="#">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-                <li :key="page" class="page-item" v-for="page in pagination.total_pages" :class="{'active': pagination.current_page === page}">
-                    <a class="page-link" href="#" >{{ page }}</a>
+                <li :class="{'active': pagination.current_page === page}" :key="page" class="page-item"
+                    v-for="page in pagination.total_pages">
+                    <a @click.prevent="getProducts(page)" class="page-link" href="#">{{ page }}</a>
                 </li>
-                <li class="page-item" :class="{'disabled':!pagination.has_next}" >
+                <li :class="{'disabled':!pagination.has_next}" class="page-item">
                     <a aria-label="Next" class="page-link" href="#">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
@@ -185,11 +186,11 @@
             }
         },
         methods: {
-            getProducts() {
+            getProducts(page = 1) {
                 const vm = this;
 
                 vm.isLoading = true;
-                this.$http.get('http://vue-course-api.hexschool.io/api/bearhsu2/admin/products')
+                this.$http.get(`http://vue-course-api.hexschool.io/api/bearhsu2/admin/products?page=${page}`)
                     .then((response) => {
                         console.log(response.data);
                         vm.isLoading = false;
