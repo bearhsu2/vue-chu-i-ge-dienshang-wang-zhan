@@ -243,8 +243,8 @@
             },
             deleteProduct(item) {
                 const vm = this;
-
-                this.$http.delete(`https://vue-course-api.hexschool.io/api/bearhsu2/admin/product/${(item.id)}`)
+                const url = `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/admin/product/${item.id}`;
+                this.$http.delete(url)
                     .then((response) => {
                         $('#productModal').modal('hide');
                         vm.getProducts();
