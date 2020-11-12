@@ -227,7 +227,10 @@
                 const formData = new FormData();
                 vm.status.fileUploading = true;
                 formData.append('file-to-upload', uploadedFile);
-                this.$http.post('https://vue-course-api.hexschool.io/api/bearhsu2/admin/upload', formData, {
+
+                const url = `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/admin/upload`;
+
+                this.$http.post(url, formData, {
                     headers: {'Content-Type': 'multipart-form-data'}
                 }).then((response) => {
                     vm.status.fileUploading = false;
