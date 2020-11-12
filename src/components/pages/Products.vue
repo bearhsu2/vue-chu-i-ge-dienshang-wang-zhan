@@ -49,7 +49,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="productModalLabel">新增產品</h5>
+                        <h5 class="modal-title" id="productModalLabel">{{modalTitle}}產品</h5>
                         <button aria-label="Close" class="close" data-dismiss="modal" type="button">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -169,6 +169,13 @@
                     fileUploading: false
                 }
             }
+        },
+        computed: {
+
+            modalTitle() {
+                return this.isNew ? '新增' : '編緝';
+            }
+
         },
         methods: {
             getProducts(page = 1) {
