@@ -31,7 +31,7 @@
                 </td>
                 <td class="col-2">
                     <button @click="openModal(false, item)" class="btn btn-outline-primary btn-sm">編輯</button>
-                    <button @click="deleteProduct" class="btn btn-outline-danger btn-sm">刪除</button>
+                    <button @click="deleteProduct(item)" class="btn btn-outline-danger btn-sm">刪除</button>
                 </td>
             </tr>
             </tbody>
@@ -229,7 +229,21 @@
                     }
                 })
             },
-            deleteProduct() {
+            deleteProduct(item) {
+                const vm = this;
+
+                this.$http.delete(`https://vue-course-api.hexschool.io/api/bearhsu2/admin/product/${(item.id)}`)
+                    .then((response) => {
+                        $('#productModal').modal('hide');
+                        vm.getProducts();
+                        if (!response.data.success) {
+                            vm.$bus.$emit('message:push', "操作失敗", 'danger');
+                        } else {
+                            vm.$bus.$emit('message:push', item.title + ' 已刪除');
+                        }
+                    });
+
+
             },
         },
         created() {
