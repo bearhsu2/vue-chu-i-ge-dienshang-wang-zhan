@@ -14,9 +14,10 @@
         name: 'App',
         components: {},
         created() {
-            this.$http.get('https://vue-course-api.hexschool.io/api/bearhsu2/products')
+            const url = `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/products`;
+            this.$http.get(url)
                 .then((response) => {
-                    // console.log(response.data.products)
+                    console.log(response.data.products)
                 })
         }
     }
