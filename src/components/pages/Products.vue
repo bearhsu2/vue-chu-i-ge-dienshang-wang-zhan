@@ -49,7 +49,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="productModalLabel">新增產品</h5>
+                        <h5 class="modal-title" id="productModalLabel">{{modalTitle}}產品</h5>
                         <button aria-label="Close" class="close" data-dismiss="modal" type="button">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -170,12 +170,20 @@
                 }
             }
         },
+        computed: {
+
+            modalTitle() {
+                return this.isNew ? '新增' : '編緝';
+            }
+
+        },
         methods: {
             getProducts(page = 1) {
                 const vm = this;
 
-                vm.isLoading = true;
-                this.$http.get(`https://vue-course-api.hexschool.io/api/bearhsu2/admin/products?page=${page}`)
+                vm.isLoading = true
+                const url = `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/admin/products?page=${page}`;
+                this.$http.get(url)
                     .then((response) => {
                         vm.isLoading = false;
                         vm.products = response.data.products;
@@ -197,10 +205,11 @@
                 const vm = this;
 
                 let url = vm.isNew
-                    ? 'https://vue-course-api.hexschool.io/api/bearhsu2/admin/product'
-                    : `https://vue-course-api.hexschool.io/api/bearhsu2/admin/product/${vm.tempProduct.id}`;
-
-                let action = vm.isNew ? 'post' : 'put';
+                    ? `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/admin/product`
+                    : `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/admin/product/${vm.tempProduct.id}`
+                let action = vm.isNew
+                    ? 'post'
+                    : 'put';
 
 
                 this.$http[action](url, {data: vm.tempProduct})
@@ -218,7 +227,10 @@
                 const formData = new FormData();
                 vm.status.fileUploading = true;
                 formData.append('file-to-upload', uploadedFile);
-                this.$http.post('https://vue-course-api.hexschool.io/api/bearhsu2/admin/upload', formData, {
+
+                const url = `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/admin/upload`;
+
+                this.$http.post(url, formData, {
                     headers: {'Content-Type': 'multipart-form-data'}
                 }).then((response) => {
                     vm.status.fileUploading = false;
@@ -231,8 +243,8 @@
             },
             deleteProduct(item) {
                 const vm = this;
-
-                this.$http.delete(`https://vue-course-api.hexschool.io/api/bearhsu2/admin/product/${(item.id)}`)
+                const url = `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/admin/product/${item.id}`;
+                this.$http.delete(url)
                     .then((response) => {
                         $('#productModal').modal('hide');
                         vm.getProducts();

@@ -34,7 +34,8 @@
         methods: {
             signIn() {
                 const vm = this;
-                this.$http.post('https://vue-course-api.hexschool.io/admin/signin', vm.user)
+                const url = `${process.env.VUE_APP_SERVER_URL}/admin/signin`;
+                this.$http.post(url, vm.user)
                     .then((response) => {
                         const responseData = response.data;
                         if (responseData.success) {
