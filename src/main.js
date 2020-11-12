@@ -22,7 +22,10 @@ new Vue({
 
 router.beforeEach((to, from, next) => {
         if (to.meta.requiresAuth) {
-            axios.post('https://vue-course-api.hexschool.io/api/user/check').then((response) => {
+
+            const url = `${process.env.VUE_APP_SERVER_URL}/api/user/check`;
+
+            axios.post(url).then((response) => {
                     if (response.data.success) {
                         console.log("Auth Successfully");
                         next();
