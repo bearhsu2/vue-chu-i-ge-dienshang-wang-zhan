@@ -33,30 +33,11 @@
                     <button @click="openModal(false, item)" class="btn btn-outline-primary btn-sm">編輯</button>
                     <button @click="deleteProduct" class="btn btn-outline-danger btn-sm">刪除</button>
                 </td>
-
             </tr>
             </tbody>
         </table>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <li :class="{'disabled':!pagination.has_pre}" class="page-item">
-                    <a @click.prevent="getProducts(pagination.current_page - 1)" aria-label="Previous" class="page-link"
-                       href="#">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li :class="{'active': pagination.current_page === page}" :key="page" class="page-item"
-                    v-for="page in pagination.total_pages">
-                    <a @click.prevent="getProducts(page)" class="page-link" href="#">{{ page }}</a>
-                </li>
-                <li :class="{'disabled':!pagination.has_next}" class="page-item">
-                    <a @click.prevent="getProducts(pagination.current_page + 1)" aria-label="Next" class="page-link"
-                       href="#">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+
+        <Pagination :pagination="pagination" v-on:jumpPage="getProducts"></Pagination>
 
         <div class="d-flex justify-content-center">
             <loading :active.sync="isLoading"></loading>
@@ -171,10 +152,12 @@
 <script>
 
     import $ from 'jquery';
+    import Pagination from '../Pagination';
 
 
     export default {
         name: 'Products',
+        components: {Pagination},
         data() {
             return {
                 products: [],
@@ -247,7 +230,7 @@
                 })
             },
             deleteProduct() {
-            }
+            },
         },
         created() {
             this.getProducts();
