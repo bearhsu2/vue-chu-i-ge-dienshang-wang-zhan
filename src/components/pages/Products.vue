@@ -181,8 +181,9 @@
             getProducts(page = 1) {
                 const vm = this;
 
-                vm.isLoading = true;
-                this.$http.get(`https://vue-course-api.hexschool.io/api/bearhsu2/admin/products?page=${page}`)
+                vm.isLoading = true
+                const url = `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/admin/products?page=${page}`;
+                this.$http.get(url)
                     .then((response) => {
                         vm.isLoading = false;
                         vm.products = response.data.products;
