@@ -205,10 +205,11 @@
                 const vm = this;
 
                 let url = vm.isNew
-                    ? 'https://vue-course-api.hexschool.io/api/bearhsu2/admin/product'
-                    : `https://vue-course-api.hexschool.io/api/bearhsu2/admin/product/${vm.tempProduct.id}`;
-
-                let action = vm.isNew ? 'post' : 'put';
+                    ? `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/admin/product`
+                    : `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/admin/product/${vm.tempProduct.id}`
+                let action = vm.isNew
+                    ? 'post'
+                    : 'put';
 
 
                 this.$http[action](url, {data: vm.tempProduct})
