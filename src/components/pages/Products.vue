@@ -192,7 +192,7 @@
                 const vm = this;
 
                 vm.isLoading = true;
-                this.$http.get(`http://vue-course-api.hexschool.io/api/bearhsu2/admin/products?page=${page}`)
+                this.$http.get(`https://vue-course-api.hexschool.io/api/bearhsu2/admin/products?page=${page}`)
                     .then((response) => {
                         vm.isLoading = false;
                         vm.products = response.data.products;
@@ -214,8 +214,8 @@
                 const vm = this;
 
                 let url = vm.isNew
-                    ? 'http://vue-course-api.hexschool.io/api/bearhsu2/admin/product'
-                    : `http://vue-course-api.hexschool.io/api/bearhsu2/admin/product/${vm.tempProduct.id}`;
+                    ? 'https://vue-course-api.hexschool.io/api/bearhsu2/admin/product'
+                    : `https://vue-course-api.hexschool.io/api/bearhsu2/admin/product/${vm.tempProduct.id}`;
 
                 let action = vm.isNew ? 'post' : 'put';
 
