@@ -35,7 +35,7 @@
         },
         methods: {
             getProducts(page) {
-                console.log(page);
+                this.$emit('jumpPage', Number(page));
             }
         }
     }
