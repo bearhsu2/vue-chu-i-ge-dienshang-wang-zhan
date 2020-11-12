@@ -33,13 +33,11 @@
                     <button @click="openModal(false, item)" class="btn btn-outline-primary btn-sm">編輯</button>
                     <button @click="deleteProduct" class="btn btn-outline-danger btn-sm">刪除</button>
                 </td>
-
             </tr>
             </tbody>
         </table>
 
-        <Pagination :pagination="pagination"></Pagination>
-
+        <Pagination :pagination="pagination" v-on:jumpPage="getProducts"></Pagination>
 
         <div class="d-flex justify-content-center">
             <loading :active.sync="isLoading"></loading>
@@ -232,7 +230,7 @@
                 })
             },
             deleteProduct() {
-            }
+            },
         },
         created() {
             this.getProducts();
