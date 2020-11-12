@@ -32,6 +32,11 @@
                 required: true
             }
 
+        },
+        methods: {
+            getProducts(page) {
+                console.log(page);
+            }
         }
     }
 </script>
