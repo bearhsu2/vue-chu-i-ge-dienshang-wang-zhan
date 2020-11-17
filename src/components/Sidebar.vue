@@ -25,7 +25,8 @@
                 </h6>
                 <ul class="nav flex-column mb-2">
                     <li class="nav-item">
-                        <router-link class="nav-link disabled" to="/fake_path">模擬訂單</router-link>
+                        <router-link class="nav-link disabled" to="/fake_path"><i class="far fa-list-alt"></i> 模擬訂單
+                        </router-link>
                     </li>
                 </ul>
             </div>
