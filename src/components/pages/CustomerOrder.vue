@@ -6,8 +6,8 @@
 
             <div :key="item.id" class="col-md-4 mb-4" v-for="item in products">
                 <div class="card border-0 shadow-sm">
-                    <div style="height: 150px; background-size: cover; background-position: center"
-                    >
+                    <div :style="{backgroundImage: `url(${item.imageUrl})`}"
+                         style="height: 150px; background-size: cover; background-position: center">
                     </div>
                     <div class="card-body">
                         <span class="badge badge-secondary float-right ml-2">分類</span>
