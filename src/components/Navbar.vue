@@ -13,7 +13,7 @@
             <input aria-label="Search" class="form-control form-control-dark w-100" placeholder="Search" type="text">
             <ul class="navbar-nav px-3">
                 <li class="nav-item text-nowrap">
-                    <a class="nav-link" href="#">Sign out</a>
+                    <a @click.prevent="signout" class="nav-link" href="#">Sign out</a>
                 </li>
             </ul>
         </nav>
@@ -25,7 +25,23 @@
 
 <script>
     export default {
-        name: "Navbar"
+        name: "Navbar",
+        methods: {
+
+            signout() {
+                const vm = this;
+                const url = `${process.env.VUE_APP_SERVER_URL}/logout`;
+                this.$http.post(url)
+                    .then((response) => {
+                        if (response.data.success) {
+                            vm.$router.push('/signin');
+                        }
+                    })
+
+            }
+
+
+        }
     }
 </script>
 
