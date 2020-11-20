@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Login from '@/components/pages/Login'
 import Dashboard from '@/components/Dashboard'
 import Products from '@/components/pages/Products'
+import CustomerOrder from "../components/pages/CustomerOrder";
 
 Vue.use(VueRouter);
 
@@ -36,5 +37,18 @@ export default new VueRouter({
             ]
 
         },
+        {
+            name: '客戶',  // 元件的名稱
+            path: '/',    // 元件的路徑
+            component: Dashboard,  // 元件本身
+            children: [
+                {
+                    name: '客戶產品頁',  // 元件的名稱
+                    path: 'customer_order',    // 元件的路徑
+                    component: CustomerOrder,  // 元件本身
+                }
+            ]
+
+        }
     ]
 });
