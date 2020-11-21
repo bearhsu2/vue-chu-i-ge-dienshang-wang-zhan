@@ -17,8 +17,9 @@
                         <p class="card-text">{{item.description}}</p>
                         <div class="d-flex justify-content-between align-items-baseline">
                             <!-- <div class="h5">2,800 元</div> -->
-                            <del class="h6">原價 2,800 元</del>
-                            <div class="h5">現在只要 1,400 元</div>
+                            <div class="h5" v-if="!item.origin_price">{{item.price}}</div>
+                            <del class="h6" v-if="item.origin_price">{{item.origin_price}}</del>
+                            <div class="h5" v-if="item.origin_price">{{item.price}}</div>
                         </div>
                     </div>
                     <div class="card-footer d-flex">
