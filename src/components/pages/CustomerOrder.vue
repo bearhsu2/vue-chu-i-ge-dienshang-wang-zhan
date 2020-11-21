@@ -74,6 +74,12 @@
                                     </del>
                                     <div class="h5" v-if="product.origin_price">現在只要{{product.price | currency}}元</div>
                                 </div>
+
+                                <select class="custom-select mt-2" v-model="product.num">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
                             </div>
 
                         </div>
