@@ -65,7 +65,9 @@
                                     {{product.title}}
                                 </h5>
                                 <p class="card-text">{{product.description}}</p>
-                                <p class="card-text">{{product.content}}</p>
+                                <blockquote class="blockquote">
+                                    {{product.content}}
+                                </blockquote>
                                 <div class="d-flex justify-content-between align-items-baseline">
                                     <div class="h5" v-if="!product.origin_price">售價{{product.price | currency}}元</div>
                                     <del class="h6" v-if="product.origin_price">原價{{product.origin_price | currency}}元
