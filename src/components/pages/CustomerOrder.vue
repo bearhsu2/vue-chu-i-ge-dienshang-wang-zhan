@@ -27,7 +27,7 @@
                             <i class="fas fa-spinner fa-spin" v-if="isLoadingItem(item.id)"></i>
                             查看更多
                         </button>
-                        <button class="btn btn-outline-danger btn-sm ml-auto" type="button">
+                        <button @click="addtoCart(item.id)" class="btn btn-outline-danger btn-sm ml-auto" type="button">
                             <i class="fas fa-spinner fa-spin" v-if="isLoadingItem(item.id)"></i>
                             加到購物車
                         </button>
@@ -42,7 +42,11 @@
             <loading :active.sync="isLoading"></loading>
         </div>
 
-        <div class="container">
+        <div class="mx-auto mt-4" style="width: 50%">
+                <div class="text-center">
+                    <h4>我的購物車</h4>
+
+                </div>
             <table class="table">
                 <thead>
                 <th></th>
@@ -51,7 +55,7 @@
                 <th>單價</th>
                 </thead>
                 <tbody>
-                <tr v-for="item in cart.carts" :key="item.id">
+                <tr :key="item.id" v-for="item in cart.carts">
                     <td class="align-middle">
                         <button class="btn btn-outline-danger btn-sm" type="button">
                             <i class="far fa-trash-alt"></i>
@@ -184,7 +188,7 @@
                 const url = `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/product/${id}`;
                 this.$http.get(url)
                     .then((response) => {
-                        console.log(response);
+                        // console.log(response);
 
                         vm.product = response.data.product;
                         this.status.loadingItem = '';
@@ -196,7 +200,26 @@
             isLoadingItem(id) {
                 return this.status.loadingItem === id;
             },
-            getCart(){
+            addtoCart(id, qty = 1) {
+                // console.log(id, qty)
+
+                const vm = this;
+                const url = `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/cart`;
+
+                const cart = {product_id: id, qty: qty};
+                // console.log("cart: ", cart);
+
+                this.$http.post(url, {data: cart})
+                    .then((response) => {
+                        console.log(response);
+
+
+                        vm.getCart();
+                    })
+
+
+            },
+            getCart() {
                 const vm = this;
                 const url = `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/cart`;
                 this.$http.get(url)
