@@ -24,11 +24,11 @@
                     </div>
                     <div class="card-footer d-flex">
                         <button @click="getProduct(item.id)" class="btn btn-outline-secondary btn-sm" type="button">
-                            <i class="fas fa-spinner fa-spin"></i>
+                            <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
                             查看更多
                         </button>
                         <button class="btn btn-outline-danger btn-sm ml-auto" type="button">
-                            <i class="fas fa-spinner fa-spin"></i>
+                            <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
                             加到購物車
                         </button>
                     </div>
@@ -96,6 +96,9 @@
                 product: {},
                 pagination: {},
                 isLoading: false,
+                status: {
+                    loadingItem: ''
+                }
             }
         },
         computed: {},
@@ -113,6 +116,7 @@
                     })
             },
             getProduct(id) {
+                this.status.loadingItem = id;
                 const vm = this;
 
                 const url = `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/product/${id}`;
@@ -121,6 +125,7 @@
                         console.log(response);
 
                         vm.product = response.data.product;
+                        this.status.loadingItem = '';
                         $('#productModal').modal('show');
 
 
@@ -128,6 +133,7 @@
             }
         },
         created() {
+            $('#productModal').modal('hide');
             this.getProducts();
         }
     }
