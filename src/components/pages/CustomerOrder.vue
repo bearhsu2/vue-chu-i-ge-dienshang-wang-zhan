@@ -24,11 +24,11 @@
                     </div>
                     <div class="card-footer d-flex">
                         <button @click="getProduct(item.id)" class="btn btn-outline-secondary btn-sm" type="button">
-                            <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
+                            <i class="fas fa-spinner fa-spin" v-if="isLoadingItem(item.id)"></i>
                             查看更多
                         </button>
                         <button class="btn btn-outline-danger btn-sm ml-auto" type="button">
-                            <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
+                            <i class="fas fa-spinner fa-spin" v-if="isLoadingItem(item.id)"></i>
                             加到購物車
                         </button>
                     </div>
@@ -130,6 +130,9 @@
 
 
                     })
+            },
+            isLoadingItem(id) {
+                return this.status.loadingItem === id;
             }
         },
         created() {
