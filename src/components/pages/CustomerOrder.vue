@@ -50,25 +50,30 @@
                         <h5 class="modal-title" id="productModalLabel">產品詳情</h5>
                     </div>
 
+                    <div class="container mt-4 mb-4">
 
-                    <div class="container">
+                        <div class="row">
 
-                        <div :style="{backgroundImage: `url(${product.imageUrl})`}"
-                             style="height: 150px; background-size: cover; background-position: center">
-                        </div>
-                        <div class="mt-4">
-                            <span class="badge badge-secondary float-right ml-2">{{product.category}}</span>
-                            <h5 class="card-title">
-                                {{product.title}}
-                            </h5>
-                            <p class="card-text">{{product.description}}</p>
-                            <p class="card-text">{{product.content}}</p>
-                            <div class="d-flex justify-content-between align-items-baseline">
-                                <!-- <div class="h5">2,800 元</div> -->
-                                <div class="h5" v-if="!product.origin_price">售價{{product.price | currency}}元</div>
-                                <del class="h6" v-if="product.origin_price">原價{{product.origin_price | currency}}元</del>
-                                <div class="h5" v-if="product.origin_price">現在只要{{product.price | currency}}元</div>
+
+                            <div class="col-4">
+                                <img :src="product.imageUrl" alt="Responsive image" class="rounded float-left">
                             </div>
+
+                            <div class="col-8">
+                                <span class="badge badge-secondary float-right ml-2">{{product.category}}</span>
+                                <h5 class="card-title">
+                                    {{product.title}}
+                                </h5>
+                                <p class="card-text">{{product.description}}</p>
+                                <p class="card-text">{{product.content}}</p>
+                                <div class="d-flex justify-content-between align-items-baseline">
+                                    <div class="h5" v-if="!product.origin_price">售價{{product.price | currency}}元</div>
+                                    <del class="h6" v-if="product.origin_price">原價{{product.origin_price | currency}}元
+                                    </del>
+                                    <div class="h5" v-if="product.origin_price">現在只要{{product.price | currency}}元</div>
+                                </div>
+                            </div>
+
                         </div>
 
 
