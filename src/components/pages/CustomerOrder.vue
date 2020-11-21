@@ -12,7 +12,7 @@
                     <div class="card-body">
                         <span class="badge badge-secondary float-right ml-2">{{item.category}}</span>
                         <h5 class="card-title">
-                            <a class="text-dark" href="#">{{item.content}}</a>
+                            <a class="text-dark" href="#">{{item.title}}</a>
                         </h5>
                         <p class="card-text">{{item.description}}</p>
                         <div class="d-flex justify-content-between align-items-baseline">
