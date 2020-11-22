@@ -43,10 +43,10 @@
         </div>
 
         <div class="mx-auto mt-4" style="width: 50%">
-                <div class="text-center">
-                    <h4>我的購物車</h4>
+            <div class="text-center">
+                <h4>我的購物車</h4>
 
-                </div>
+            </div>
             <table class="table">
                 <thead>
                 <th></th>
@@ -142,7 +142,7 @@
                         <div class="text-muted text-nowrap mr-3">
                             小計 {{product.num * product.price | currency}} 元
                         </div>
-                        <button type="button" class="btn btn-primary">
+                        <button class="btn btn-primary" type="button">
                             <i class="fa fa-spinner fa-spin" v-if="isLoadingItem(product.id)"></i>
                             加到購物車
                         </button>
