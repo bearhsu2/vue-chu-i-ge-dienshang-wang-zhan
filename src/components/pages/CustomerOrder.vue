@@ -224,7 +224,8 @@
                 const url = `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/cart`;
                 this.$http.get(url)
                     .then((response) => {
-                        vm.cart.carts = response.data.data.carts;
+                        // console.log("cart!!!", response);
+                        vm.cart = response.data.data;
                     })
             }
         },
