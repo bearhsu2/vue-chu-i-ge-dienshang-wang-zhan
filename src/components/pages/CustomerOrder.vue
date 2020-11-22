@@ -158,7 +158,7 @@
 
 
     export default {
-        name: 'Products',
+        name: 'CustomerOrder',
         components: {Pagination},
         data() {
             return {

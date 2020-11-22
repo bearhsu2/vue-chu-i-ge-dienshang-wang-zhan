@@ -13,7 +13,7 @@
 
 <script>
     export default {
-        name: 'Navbar',
+        name: 'AlertMessage',
         data() {
             return {
                 messages: [],
