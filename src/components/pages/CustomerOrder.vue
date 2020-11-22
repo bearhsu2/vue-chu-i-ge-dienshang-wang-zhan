@@ -201,21 +201,17 @@
                 return this.status.loadingItem === id;
             },
             addtoCart(id, qty = 1) {
-                // console.log(id, qty)
-
+                this.status.loadingItem = id;
                 const vm = this;
                 const url = `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/cart`;
-
                 const cart = {product_id: id, qty: qty};
                 // console.log("cart: ", cart);
-
                 this.$http.post(url, {data: cart})
                     .then((response) => {
                         // console.log(response);
+                        vm.status.loadingItem = '';
                         vm.getCart();
                     })
-
-
             },
             getCart() {
                 const vm = this;
