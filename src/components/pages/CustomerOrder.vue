@@ -211,9 +211,7 @@
 
                 this.$http.post(url, {data: cart})
                     .then((response) => {
-                        console.log(response);
-
-
+                        // console.log(response);
                         vm.getCart();
                     })
 
