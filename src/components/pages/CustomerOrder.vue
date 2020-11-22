@@ -68,17 +68,17 @@
                         </div> -->
                     </td>
                     <td class="align-middle">{{ item.qty }}/{{ item.product.unit }}</td>
-                    <td class="align-middle text-right">{{ item.final_total }}</td>
+                    <td class="align-middle text-right">{{ item.final_total | currency}}</td>
                 </tr>
                 </tbody>
                 <tfoot>
                 <tr>
                     <td class="text-right" colspan="3">總計</td>
-                    <td class="text-right">{{ cart.total }}</td>
+                    <td class="text-right">{{ cart.total | currency}}</td>
                 </tr>
                 <tr>
                     <td class="text-right text-success" colspan="3">折扣價</td>
-                    <td class="text-right text-success">{{ cart.final_total }}</td>
+                    <td class="text-right text-success">{{ cart.final_total | currency}}</td>
                 </tr>
                 </tfoot>
             </table>
@@ -125,7 +125,7 @@
 
                                 <select class="custom-select mt-2" v-model="product.num">
                                     <option :value="num" v-for="num in 10">
-                                       選購 {{num}} {{product.unit}}
+                                        選購 {{num}} {{product.unit}}
                                     </option>
                                 </select>
                             </div>
@@ -137,7 +137,7 @@
                         <div class="text-muted text-nowrap mr-3">
                             小計 {{product.num * product.price | currency}} 元
                         </div>
-                        <button class="btn btn-primary" type="button" @click="addtoCart(product.id, product.num)">
+                        <button @click="addtoCart(product.id, product.num)" class="btn btn-primary" type="button">
                             <i class="fa fa-spinner fa-spin" v-if="isLoadingItem(product.id)"></i>
                             加到購物車
                         </button>
