@@ -91,6 +91,8 @@
                 </div>
             </div>
         </div>
+
+
         <div aria-hidden="true" aria-labelledby="productModalLabel" class="modal fade" id="productModal" role="dialog"
              tabindex="-1">
             <div class="modal-dialog modal-lg" role="document">
@@ -99,7 +101,7 @@
                         <h5 class="modal-title" id="productModalLabel">產品詳情</h5>
                     </div>
 
-                    <div class="container mt-4 mb-4">
+                    <div class="modal-body">
 
                         <div class="row">
 
@@ -134,6 +136,12 @@
                         </div>
 
 
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="text-muted text-nowrap mr-3">
+                            小計 {{product.num * product.price | currency}} 元
+                        </div>
                     </div>
 
 
