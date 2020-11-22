@@ -42,7 +42,7 @@
             <loading :active.sync="isLoading"></loading>
         </div>
 
-        <div class="mx-auto mt-4" style="width: 50%">
+        <div class="mx-auto mt-4" style="width: 50%" v-if="cart.carts.length > 0">
             <div class="text-center">
                 <h4>我的購物車</h4>
 
@@ -57,7 +57,7 @@
                 <tbody>
                 <tr :key="item.id" v-for="item in cart.carts">
                     <td class="align-middle">
-                        <button class="btn btn-outline-danger btn-sm" type="button"  @click="removeCartItem(item.id)">
+                        <button @click="removeCartItem(item.id)" class="btn btn-outline-danger btn-sm" type="button">
                             <i class="far fa-trash-alt"></i>
                         </button>
                     </td>
