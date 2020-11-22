@@ -104,12 +104,9 @@
                     <div class="modal-body">
 
                         <div class="row">
-
-
                             <div class="col-4">
                                 <img :src="product.imageUrl" alt="Responsive image" class="rounded float-left">
                             </div>
-
                             <div class="col-8">
                                 <span class="badge badge-secondary float-right ml-2">{{product.category}}</span>
                                 <h5 class="card-title">
@@ -127,22 +124,20 @@
                                 </div>
 
                                 <select class="custom-select mt-2" v-model="product.num">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
+                                    <option :value="num" v-for="num in 10">
+                                       選購 {{num}} {{product.unit}}
+                                    </option>
                                 </select>
                             </div>
 
                         </div>
-
-
                     </div>
 
                     <div class="modal-footer">
                         <div class="text-muted text-nowrap mr-3">
                             小計 {{product.num * product.price | currency}} 元
                         </div>
-                        <button class="btn btn-primary" type="button">
+                        <button class="btn btn-primary" type="button" @click="addtoCart(product.id, product.num)">
                             <i class="fa fa-spinner fa-spin" v-if="isLoadingItem(product.id)"></i>
                             加到購物車
                         </button>
@@ -201,7 +196,6 @@
                 this.$http.get(url)
                     .then((response) => {
                         // console.log(response);
-
                         vm.product = response.data.product;
                         this.status.loadingItem = '';
                         $('#productModal').modal('show');
@@ -222,6 +216,7 @@
                     .then((response) => {
                         // console.log(response);
                         vm.status.loadingItem = '';
+                        $('#productModal').modal('hide');
                         vm.getCart();
                     })
             },
