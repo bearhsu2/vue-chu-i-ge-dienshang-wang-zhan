@@ -57,7 +57,7 @@
                 <tbody>
                 <tr :key="item.id" v-for="item in cart.carts">
                     <td class="align-middle">
-                        <button class="btn btn-outline-danger btn-sm" type="button">
+                        <button class="btn btn-outline-danger btn-sm" type="button"  @click="removeCartItem(item.id)">
                             <i class="far fa-trash-alt"></i>
                         </button>
                     </td>
@@ -227,6 +227,17 @@
                     .then((response) => {
                         // console.log("cart!!!", response);
                         vm.cart = response.data.data;
+                    })
+            },
+            removeCartItem(id) {
+                this.isLoading = true;
+                const vm = this;
+                const url = `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/cart/${id}`;
+                this.$http.delete(url)
+                    .then((response) => {
+                        console.log("removeCartItem!!!", response);
+                        vm.getCart();
+                        this.isLoading = false;
                     })
             }
         },
