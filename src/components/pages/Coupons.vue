@@ -11,7 +11,8 @@
             <tr class="d-flex">
 
 
-                <td class="col-6">優惠</td>
+                <td class="col-4">優惠</td>
+                <td class="col-2">優惠碼</td>
                 <td class="col-2">到期日</td>
                 <td class="col-1">折扣</td>
                 <td class="col-1">啟用</td>
@@ -21,8 +22,9 @@
             <tbody>
             <tr :key=coupon.id class="d-flex" v-for="coupon in coupons">
 
-                <td class="col-6">{{coupon.title}}</td>
-                <td class="col-2 text-right">{{coupon.due_date}}</td>
+                <td class="col-4">{{coupon.title}}</td>
+                <td class="col-2">{{coupon.code}}</td>
+                <td class="col-2">{{coupon.due_date}}</td>
                 <td class="col-1 text-right">{{coupon.percent}}</td>
                 <td class="col-1">
                     <span class="text-success" v-if="coupon.is_enabled">Active</span>
@@ -30,7 +32,7 @@
                 </td>
                 <td class="col-2">
                     <button @click="openModal(false, coupon)" class="btn btn-outline-primary btn-sm">編輯</button>
-                    <button @click="deleteProduct(coupon)" class="btn btn-outline-danger btn-sm">刪除</button>
+                    <button @click="deleteCoupon(coupon)" class="btn btn-outline-danger btn-sm">刪除</button>
                 </td>
             </tr>
             </tbody>
@@ -64,21 +66,28 @@
                                            v-model="tempCoupon.title">
                                 </div>
 
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="due_date">到期日</label>
-                                        <input class="form-control" id="due_date" placeholder="請輸入到期日"
-                                               type="text"
-                                               v-model="tempCoupon.due_date">
-                                    </div>
-                                </div>
 
                                 <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="code">優惠碼</label>
+                                        <input class="form-control" id="code" placeholder="請輸入優惠碼"
+                                               type="text"
+                                               v-model="tempCoupon.code">
+                                    </div>
                                     <div class="form-group col-md-6">
                                         <label for="percent">折扣</label>
                                         <input class="form-control" id="percent" placeholder="請輸入折扣"
                                                type="number"
                                                v-model="tempCoupon.percent">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="due_date">到期日</label>
+                                        <input class="form-control" id="due_date" placeholder="請輸入到期日"
+                                               type="date"
+                                               v-model="tempCoupon.due_date">
+
                                     </div>
                                 </div>
                                 <hr>
@@ -158,29 +167,30 @@
             },
             updateCoupon() {
 
-                console.log("tempCoupon", this.tempCoupon);
+                console.log("tempCoupon", Date.parse(this.tempCoupon.due_date));
 
-                // const vm = this;
-                //
-                // let url = vm.isNew
-                //     ? `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/admin/product`
-                //     : `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/admin/product/${vm.tempCoupon.id}`
-                // let action = vm.isNew
-                //     ? 'post'
-                //     : 'put';
-                //
-                //
-                // this.$http[action](url, {data: vm.tempCoupon})
-                //     .then((response) => {
-                //         $('#productModal').modal('hide');
-                //         vm.getCoupons();
-                //         if (!response.data.success) {
-                //             vm.$bus.$emit('message:push', "操作失敗", 'danger');
-                //         }
-                //     });
+
+                const vm = this;
+
+                let url = vm.isNew
+                    ? `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/admin/coupon`
+                    : `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/admin/coupon/${vm.tempCoupon.id}`
+                let action = vm.isNew
+                    ? 'post'
+                    : 'put';
+
+
+                this.$http[action](url, {data: vm.tempCoupon})
+                    .then((response) => {
+                        $('#couponModal').modal('hide');
+                        vm.getCoupons();
+                        if (!response.data.success) {
+                            vm.$bus.$emit('message:push', "操作失敗", 'danger');
+                        }
+                    });
             },
 
-            deleteProduct(item) {
+            deleteCoupon(item) {
                 // const vm = this;
                 // const url = `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/admin/product/${item.id}`;
                 // this.$http.delete(url)
