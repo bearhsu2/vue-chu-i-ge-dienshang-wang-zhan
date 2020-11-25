@@ -149,7 +149,7 @@
                 const url = `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/admin/coupons?page=${page}`;
                 this.$http.get(url)
                     .then((response) => {
-                        console.log("coupons", response)
+                        // console.log("coupons", response)
                         vm.isLoading = false;
                         vm.coupons = response.data.coupons;
                         vm.pagination = response.data.pagination;
@@ -167,7 +167,7 @@
             },
             updateCoupon() {
 
-                console.log("tempCoupon", Date.parse(this.tempCoupon.due_date));
+                // console.log("tempCoupon", Date.parse(this.tempCoupon.due_date));
 
 
                 const vm = this;
@@ -191,24 +191,25 @@
             },
 
             deleteCoupon(item) {
-                // const vm = this;
-                // const url = `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/admin/product/${item.id}`;
-                // this.$http.delete(url)
-                //     .then((response) => {
-                //         $('#productModal').modal('hide');
-                //         vm.getCoupons();
-                //         if (!response.data.success) {
-                //             vm.$bus.$emit('message:push', "操作失敗", 'danger');
-                //         } else {
-                //             vm.$bus.$emit('message:push', item.title + ' 已刪除');
-                //         }
-                //     });
-                //
+                const vm = this;
+                const url = `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/admin/coupon/${item.id}`;
+                this.$http.delete(url)
+                    .then((response) => {
+                        $('#couponModal').modal('hide');
+                        vm.getCoupons();
+                        if (!response.data.success) {
+                            vm.$bus.$emit('message:push', "操作失敗", 'danger');
+                        } else {
+                            vm.$bus.$emit('message:push', item.title + ' 已刪除');
+                        }
+                    });
+
 
             },
         },
         created() {
             this.getCoupons();
+            $('#couponModal').modal('hide');
         }
     }
 
