@@ -14,10 +14,10 @@
         name: 'App',
         components: {},
         // created() {
-        //     const url = `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/products`;
+        //     const url = `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/coupons`;
         //     this.$http.get(url)
         //         .then((response) => {
-        //             console.log(response.data.products)
+        //             console.log(response.data.coupons)
         //         })
         // }
     }
