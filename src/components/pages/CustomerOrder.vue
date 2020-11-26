@@ -83,9 +83,9 @@
                 </tfoot>
             </table>
             <div class="input-group mb-3 input-group-sm">
-                <input class="form-control" placeholder="請輸入優惠碼" type="text">
+                <input class="form-control" placeholder="請輸入優惠碼" type="text" v-model="coupon_code">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button">
+                    <button @click="addCouponCode" class="btn btn-outline-secondary" type="button">
                         套用優惠碼
                     </button>
                 </div>
@@ -171,7 +171,8 @@
                 },
                 cart: {
                     carts: []
-                }
+                },
+                coupon_code: ''
             }
         },
         computed: {},
@@ -238,6 +239,25 @@
                         console.log("removeCartItem!!!", response);
                         vm.getCart();
                         this.isLoading = false;
+                    })
+            },
+            addCouponCode() {
+                const vm = this;
+                const url = `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/coupon`;
+                const coupon = {
+                    code: vm.coupon_code
+                }
+
+                vm.isLoading = true;
+                this.$http.post(url, {data: coupon})
+                    .then((response) => {
+
+                        vm.isLoading = false;
+                        if (response.data.success) {
+                            vm.getCart();
+                        } else {
+                            vm.$bus.$emit('message:push', response.data.message, 'danger');
+                        }
                     })
             }
         },
