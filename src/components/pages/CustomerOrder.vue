@@ -45,7 +45,6 @@
         <div class="mx-auto mt-4" style="width: 50%" v-if="cart.carts.length > 0">
             <div class="text-center">
                 <h4>我的購物車</h4>
-
             </div>
             <table class="table">
                 <thead>
@@ -91,6 +90,47 @@
                 </div>
             </div>
         </div>
+
+        <div class="my-5 row justify-content-center">
+            <form class="col-md-6">
+                <div class="form-group">
+                    <label for="useremail">Email</label>
+                    <input class="form-control" id="useremail" name="email" placeholder="請輸入 Email"
+                           required type="email" v-model="form.user.email">
+                    <span class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="username">收件人姓名</label>
+                    <input class="form-control" id="username" name="name" placeholder="輸入姓名"
+                           type="text" v-model="form.user.name">
+                    <span class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="usertel">收件人電話</label>
+                    <input class="form-control" id="usertel" placeholder="請輸入電話" type="tel" v-model="form.user.tel">
+                </div>
+
+                <div class="form-group">
+                    <label for="useraddress">收件人地址</label>
+                    <input class="form-control" id="useraddress" name="address" placeholder="請輸入地址" type="text"
+                           v-model="form.user.address">
+                    <span class="text-danger">地址欄位不得留空</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="comment">留言</label>
+                    <textarea class="form-control" cols="30" id="comment" name="" rows="10"
+                              v-model="form.message"></textarea>
+                </div>
+                <div class="text-right">
+                    <button class="btn btn-danger">送出訂單</button>
+                </div>
+            </form>
+        </div>
+
+
 
 
         <div aria-hidden="true" aria-labelledby="productModalLabel" class="modal fade" id="productModal" role="dialog"
@@ -142,8 +182,6 @@
                             加到購物車
                         </button>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -172,7 +210,10 @@
                 cart: {
                     carts: []
                 },
-                coupon_code: ''
+                coupon_code: '',
+                form: {
+                    user: {}
+                }
             }
         },
         computed: {},
