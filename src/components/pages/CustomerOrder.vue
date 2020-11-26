@@ -76,7 +76,7 @@
                     <td class="text-right" colspan="3">總計</td>
                     <td class="text-right">{{ cart.total | currency}}</td>
                 </tr>
-                <tr>
+                <tr v-if="cart.total != cart.final_total">
                     <td class="text-right text-success" colspan="3">折扣價</td>
                     <td class="text-right text-success">{{ cart.final_total | currency}}</td>
                 </tr>
