@@ -131,8 +131,6 @@
         </div>
 
 
-
-
         <div aria-hidden="true" aria-labelledby="productModalLabel" class="modal fade" id="productModal" role="dialog"
              tabindex="-1">
             <div class="modal-dialog modal-lg" role="document">
@@ -212,7 +210,12 @@
                 },
                 coupon_code: '',
                 form: {
-                    user: {}
+                    user: {
+                        name: '',
+                        email: '',
+                        tel: '',
+                        address: ''
+                    }, message: ''
                 }
             }
         },
