@@ -6,6 +6,26 @@ import Products from '@/components/pages/Products'
 import CustomerOrder from "../components/pages/CustomerOrder";
 import Coupons from '@/components/pages/Coupons'
 
+import { ValidationObserver, ValidationProvider, extend, localize, configure } from 'vee-validate';
+import TW from 'vee-validate/dist/locale/zh_TW.json'
+import * as rules from 'vee-validate/dist/rules';
+
+
+Object.keys(rules).forEach((rule) => {
+    extend(rule, rules[rule]);
+});
+
+localize('zh_TW', TW);
+
+Vue.component('ValidationObserver', ValidationObserver)
+Vue.component('ValidationProvider', ValidationProvider)
+configure({
+    classes: {
+        valid: 'is-valid',
+        invalid: 'is-invalid'
+    }
+});
+
 Vue.use(VueRouter);
 
 export default new VueRouter({
