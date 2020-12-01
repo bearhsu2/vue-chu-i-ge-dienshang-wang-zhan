@@ -95,7 +95,7 @@
             <form class="col-md-6">
 
 
-                <validation-provider rules="required|email" v-slot="{ errors, classes }">
+                <ValidationProvider rules="required|email" v-slot="{ errors, classes }">
 
 
                     <div class="form-group">
@@ -105,11 +105,11 @@
                         <input :class="classes" class="form-control" id="email" name="email"
                                type="email" v-model="form.user.email">
                         <!-- 錯誤訊息 -->
-                        <span class="invalid-feedback">{‌{ errors[0] }}</span>
+                        <span class="invalid-feedback">{{ errors[0] }}</span>
                     </div>
 
 
-                </validation-provider>
+                </ValidationProvider>
 
                 <!--                <div class="form-group">-->
                 <!--                    <label for="username">收件人姓名</label>-->
@@ -136,7 +136,7 @@
                 <!--                              v-model="form.message"></textarea>-->
                 <!--                </div>-->
                 <div class="text-right">
-                    <button class="btn btn-danger">送出訂單</button>
+                    <button class="btn btn-danger disabled">送出訂單</button>
                 </div>
             </form>
         </div>
