@@ -100,30 +100,30 @@
                     <span class="text-danger"></span>
                 </div>
 
-                <div class="form-group">
-                    <label for="username">收件人姓名</label>
-                    <input class="form-control" id="username" name="name" placeholder="輸入姓名"
-                           type="text" v-model="form.user.name">
-                    <span class="text-danger"></span>
-                </div>
+<!--                <div class="form-group">-->
+<!--                    <label for="username">收件人姓名</label>-->
+<!--                    <input class="form-control" id="username" name="name" placeholder="輸入姓名"-->
+<!--                           type="text" v-model="form.user.name">-->
+<!--                    <span class="text-danger"></span>-->
+<!--                </div>-->
 
-                <div class="form-group">
-                    <label for="usertel">收件人電話</label>
-                    <input class="form-control" id="usertel" placeholder="請輸入電話" type="tel" v-model="form.user.tel">
-                </div>
+<!--                <div class="form-group">-->
+<!--                    <label for="usertel">收件人電話</label>-->
+<!--                    <input class="form-control" id="usertel" placeholder="請輸入電話" type="tel" v-model="form.user.tel">-->
+<!--                </div>-->
 
-                <div class="form-group">
-                    <label for="useraddress">收件人地址</label>
-                    <input class="form-control" id="useraddress" name="address" placeholder="請輸入地址" type="text"
-                           v-model="form.user.address">
-                    <span class="text-danger">地址欄位不得留空</span>
-                </div>
+<!--                <div class="form-group">-->
+<!--                    <label for="useraddress">收件人地址</label>-->
+<!--                    <input class="form-control" id="useraddress" name="address" placeholder="請輸入地址" type="text"-->
+<!--                           v-model="form.user.address">-->
+<!--                    <span class="text-danger">地址欄位不得留空</span>-->
+<!--                </div>-->
 
-                <div class="form-group">
-                    <label for="comment">留言</label>
-                    <textarea class="form-control" cols="30" id="comment" name="" rows="10"
-                              v-model="form.message"></textarea>
-                </div>
+<!--                <div class="form-group">-->
+<!--                    <label for="comment">留言</label>-->
+<!--                    <textarea class="form-control" cols="30" id="comment" name="" rows="10"-->
+<!--                              v-model="form.message"></textarea>-->
+<!--                </div>-->
                 <div class="text-right">
                     <button class="btn btn-danger">送出訂單</button>
                 </div>
