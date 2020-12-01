@@ -95,7 +95,7 @@
             <form class="col-md-6">
 
 
-                <ValidationProvider rules="required|email" v-slot="{ errors, classes }">
+                <validation-provider rules="required|email" v-slot="{ errors, classes }">
 
 
                     <div class="form-group">
@@ -109,7 +109,7 @@
                     </div>
 
 
-                </ValidationProvider>
+                </validation-provider>
 
                 <!--                <div class="form-group">-->
                 <!--                    <label for="username">收件人姓名</label>-->
