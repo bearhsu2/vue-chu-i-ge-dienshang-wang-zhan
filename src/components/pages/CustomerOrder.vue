@@ -91,54 +91,59 @@
             </div>
         </div>
 
-        <div class="my-5 row justify-content-center">
-            <form class="col-md-6">
+        <div>
+
+            <validation-observer class="my-5 row justify-content-center" v-slot="{ invalid, handleSubmit }">
+                <form @submit.prevent="handleSubmit(submitForm)" class="col-md-6">
 
 
-                <validation-provider rules="required|email" v-slot="{ errors, classes }">
+                    <validation-provider rules="required|email" v-slot="{ errors, classes }">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <!-- 輸入框 -->
+                            <input :class="classes" class="form-control" id="email" name="email" placeholder="E-mail"
+                                   type="email" v-model="form.user.email">
+                            <!-- 錯誤訊息 -->
+                            <span class="invalid-feedback">{{ errors[0] }}</span>
+                        </div>
+                    </validation-provider>
+
+                    <validation-provider rules="required" v-slot="{ errors, classes }">
+                        <div class="form-group">
+                            <label for="username">收件人姓名</label>
+                            <input :class="classes" class="form-control" id="username" name="name" placeholder="收件人姓名"
+                                   type="text" v-model="form.user.name">
+                            <span class="invalid-feedback">{{ errors[0] }}</span>
+                        </div>
+                    </validation-provider>
+
+                    <validation-provider rules="required|digits:10" v-slot="{ errors, classes }">
+                        <div class="form-group">
+                            <label for="usertel">收件人電話</label>
+                            <input :class="classes" class="form-control" id="usertel" placeholder="請輸入電話" type="tel"
+                                   v-model="form.user.tel">
+                            <span class="invalid-feedback">{{ errors[0] }}</span>
+                        </div>
+                    </validation-provider>
+
+                    <validation-provider rules="required" v-slot="{ errors, classes }">
+                        <div class="form-group">
+                            <label for="useraddress">收件人地址</label>
+                            <input :class="classes" class="form-control" id="useraddress" name="address"
+                                   placeholder="請輸入地址"
+                                   type="text"
+                                   v-model="form.user.address">
+                            <span class="invalid-feedback">{{ errors[0] }}</span>
+                        </div>
+                    </validation-provider>
 
 
-                    <div class="form-group">
-
-                        <label for="email">Email</label>
-                        <!-- 輸入框 -->
-                        <input :class="classes" class="form-control" id="email" name="email"
-                               type="email" v-model="form.user.email">
-                        <!-- 錯誤訊息 -->
-                        <span class="invalid-feedback">{{ errors[0] }}</span>
+                    <div class="text-right">
+                        <button :disabled="invalid" class="btn btn-danger" type="submit">送出訂單</button>
                     </div>
+                </form>
+            </validation-observer>
 
-
-                </validation-provider>
-
-                <!--                <div class="form-group">-->
-                <!--                    <label for="username">收件人姓名</label>-->
-                <!--                    <input class="form-control" id="username" name="name" placeholder="輸入姓名"-->
-                <!--                           type="text" v-model="form.user.name">-->
-                <!--                    <span class="text-danger"></span>-->
-                <!--                </div>-->
-
-                <!--                <div class="form-group">-->
-                <!--                    <label for="usertel">收件人電話</label>-->
-                <!--                    <input class="form-control" id="usertel" placeholder="請輸入電話" type="tel" v-model="form.user.tel">-->
-                <!--                </div>-->
-
-                <!--                <div class="form-group">-->
-                <!--                    <label for="useraddress">收件人地址</label>-->
-                <!--                    <input class="form-control" id="useraddress" name="address" placeholder="請輸入地址" type="text"-->
-                <!--                           v-model="form.user.address">-->
-                <!--                    <span class="text-danger">地址欄位不得留空</span>-->
-                <!--                </div>-->
-
-                <!--                <div class="form-group">-->
-                <!--                    <label for="comment">留言</label>-->
-                <!--                    <textarea class="form-control" cols="30" id="comment" name="" rows="10"-->
-                <!--                              v-model="form.message"></textarea>-->
-                <!--                </div>-->
-                <div class="text-right">
-                    <button class="btn btn-danger disabled">送出訂單</button>
-                </div>
-            </form>
         </div>
 
 
@@ -232,6 +237,9 @@
         },
         computed: {},
         methods: {
+            submitForm() {
+                console.log("HHHHH Submitted");
+            },
             getProducts(page = 1) {
                 const vm = this;
 
