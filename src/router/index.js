@@ -4,9 +4,10 @@ import Login from '@/components/pages/Login'
 import Dashboard from '@/components/Dashboard'
 import Products from '@/components/pages/Products'
 import CustomerOrder from "../components/pages/CustomerOrder";
+import CustomerCheckout from "../components/pages/CustomerCheckout";
 import Coupons from '@/components/pages/Coupons'
 
-import { ValidationObserver, ValidationProvider, extend, localize, configure } from 'vee-validate';
+import {configure, extend, localize, ValidationObserver, ValidationProvider} from 'vee-validate';
 import TW from 'vee-validate/dist/locale/zh_TW.json'
 import * as rules from 'vee-validate/dist/rules';
 
@@ -76,6 +77,10 @@ export default new VueRouter({
                     name: '客戶產品頁',  // 元件的名稱
                     path: 'customer_order',    // 元件的路徑
                     component: CustomerOrder,  // 元件本身
+                }, {
+                    name: '客戶結帳頁',  // 元件的名稱
+                    path: 'customer_checkout/:orderId',    // 元件的路徑
+                    component: CustomerCheckout,  // 元件本身
                 }
             ]
 

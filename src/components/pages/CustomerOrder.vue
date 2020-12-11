@@ -238,7 +238,6 @@
         computed: {},
         methods: {
             createOrder() {
-                console.log("HHHHH Submitted");
 
                 const vm = this;
                 const url = `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/order`;
@@ -247,10 +246,13 @@
                 vm.isLoading = true
                 this.$http.post(url, {data: order})
                     .then((response) => {
-                        vm.isLoading = false;
-                        console.log("response: ", response);
-                        console.log("訂單已建立");
 
+                        vm.isLoading = false;
+                        if (response.data.success) {
+
+
+                            vm.$router.push(`customer_checkout/${response.data.orderId}`);
+                        }
                     })
 
             },
