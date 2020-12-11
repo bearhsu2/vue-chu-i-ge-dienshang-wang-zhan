@@ -1,6 +1,6 @@
 <template>
     <div class="my-5 row justify-content-center">
-        <form class="col-md-6">
+        <form class="col-md-6"  @submit.prevent="payOrder">
             <table class="table">
                 <thead>
                 <th>品名</th>
@@ -81,12 +81,26 @@
 
                     })
             },
+            payOrder() {
+                const vm = this;
+
+                vm.isLoading = true
+                const url = `${process.env.VUE_APP_SERVER_URL}/api/${process.env.VUE_APP_API_NAME}/pay/${vm.orderId}`;
+                this.$http.post(url)
+                    .then((response) => {
+                        vm.isLoading = false;
+                        if (response.data.success) {
+                            vm.getOrder();
+                            // vm.order = response.data.order;
+                        }
+                    })
+            },
         },
         data() {
             return {
                 orderId: '',
                 order: {
-                    user: ''
+                    user: {}
                 }
             }
         },
