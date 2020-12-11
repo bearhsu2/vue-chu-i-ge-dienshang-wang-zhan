@@ -2,7 +2,7 @@
     <div>
 
         <div class="text-right mt-4">
-            <button @click="openModal(true)" class="btn btn-primary">新增產品</button>
+            <button @click="openModal(true)" class="btn btn-primary">新增優惠</button>
         </div>
 
 
